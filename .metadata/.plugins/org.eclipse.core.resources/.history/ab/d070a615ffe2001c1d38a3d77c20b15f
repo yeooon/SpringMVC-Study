@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.txt
+{
+	width: 200px;
+	height: 40px;
+}
+
+.underline_left
+{
+	align:
+}

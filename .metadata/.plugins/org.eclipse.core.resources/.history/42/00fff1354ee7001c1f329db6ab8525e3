@@ -1,0 +1,103 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String cp = request.getContextPath();
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- 기기별 크기 담당 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 디자인 담당 -->
+<title>카테고리 관리</title>
+<style type="text/css">
+
+</style>
+
+</head>
+<body>
+
+<c:import url="ad_Header.jsp"></c:import>
+
+
+	<style>
+		.outer {
+			width:1200px; /* % 단위를 사용하면 middle이 적용되지 않음 */
+			height: 500px;
+			text-align: center;
+			vertical-align: middle;
+			display:table-cell;
+			border: 1px solid black;
+		}
+		.inner {
+			display:inline-block;
+			text-align: center;
+			border: 1px solid red;
+			height: 100px;
+			width: 200px;
+		}
+	</style>
+	<div class="container">
+	<div class="bg-primary outer">
+		<div class="bg-success inner"> CENTER </div>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+	
+	<script>
+	// 토스트에 관련된 URL : https://getbootstrap.com/docs/4.3/components/toasts/
+	
+	/*
+	$(document).ready(function(){
+		
+	});
+	*/
+
+	$(function(){
+		// 토스트 데이터
+		gfn_toast({"title":"Information", "contents":"정상적으로 반영되었습니다."});
+
+		// 공통함수
+		function gfn_toast(option){
+		  if(!!$("#g_toast_container")){
+		    $("#g_toast_container").remove();
+		  }
+		  var optionDefault = {"title": "information", "contents": "successful"}
+		  option = $.extend(optionDefault, option);
+		  //console.log(option);
+		  var toastDiv='';
+		  toastDiv += '<div id="g_toast_container" style="min-height: 250px;position:absolute;top:60px;">';
+		  toastDiv += '<div id="g_toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">';
+		  toastDiv += '  <div class="toast-header bg-info text-white">';
+		  toastDiv += '    <i class="fas fa-bell"></i>';
+		  toastDiv += '    <strong class="mr-auto ml-3">' + option.title + '</strong>';
+		  toastDiv += '    <small class="text-muted ml-3">2 seconds ago</small>';
+		  toastDiv += '    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">';
+		  toastDiv += '      <span aria-hidden="true">&times;</span>';
+		  toastDiv += '    </button>';
+		  toastDiv += '  </div>';
+		  toastDiv += '  <div class="toast-body">' + option.contents + '</div>';
+		  toastDiv += '</div>';
+		  toastDiv += '</div>';
+		  
+		  $("body").append(toastDiv);
+		  // 좌우 중앙에 토스트 윈도우를 위치 시킴
+		  $("#g_toast_container").css({"left": ((($(window).width() - $("#g_toast_container").outerWidth()) / 2) + $(window).scrollLeft() + "px")});
+		  // 디폴트 옵션에서 delay만 2000 (delay의 디폴트는 500)
+		  $("#g_toast").toast({"animation": true, "autohide": true, "delay": 3000});
+		  $("#g_toast").toast('show');
+		}
+	});
+	</script>
+
+
+
+</body>
+</html>
